@@ -1,0 +1,35 @@
+_G.ToggleColor = Color3.fromRGB(255,0,0)
+_G.ButtonColor = Color3.fromRGB(0,255,0)
+_G.SliderColor = Color3.fromRGB(0,0,255)
+
+local library = loadstring(game:HttpGet(('https://pastebin.com/raw/FsJak6AT')))()
+
+local w = library:CreateWindow("Knockout")
+local b = w:CreateFolder("Scripts")
+b:Toggle("EXP",function(bool)
+    shared.toggle = bool
+    while shared.toggle do
+game:GetService("RunService").RenderStepped:wait()
+for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+if v:IsA"Tool" then
+   v.ExpRemote:FireServer()
+end
+end
+end
+end)
+b:Toggle("Damage Others",function(bool)
+shared.toggle2 = bool
+while shared.toggle2 do
+game:GetService("RunService").RenderStepped:wait()
+for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+if v:IsA"Tool" then
+ kekd = v.Name
+end
+end
+for i,v in pairs(game.Players:GetPlayers()) do
+if v.Name ~= game.Players.LocalPlayer.Name then
+game.Players.LocalPlayer.Character[kekd].DamageRemote:FireServer(game.Workspace[v.Name].Humanoid)
+end
+end
+end
+end)
